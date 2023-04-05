@@ -1,51 +1,39 @@
 import React from 'react'
 import ChildComponent from './ChildComponent'
+import AddComponent from './AddComponent'
 
 class Mycomponent extends React.Component {
-   state = {
-    fistName:"",
-    lastName:"",
+  state = {
     arrJobs: [
-        { id: 'abcJob1', title: 'Developers', salary: '500 $' },
-        { id: 'abcJob2', title: 'Testers', salary: '400 $' },
-        { id: 'abcJob3', title: 'Project managers', salary: '1000 $' }
+      { id: 'abcJob1', title: 'Developers', salary: '300' },
+      { id: 'abcJob2', title: 'Testers', salary: '400' },
+      { id: 'abcJob3', title: 'Project managers', salary: '200' }
     ]
-   }
-   handleFistName = (event) => {
-    this.setState({fistName:event.target.value})
-   }
+  }
 
-   handleLastName = (event) => {
-    this.setState({lastName:event.target.value})
-   }
-
-   handleClickProps = (e) => {
-        e.preventDefault()
-        alert("Click");
-   }
-
-   handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`Hello ${this.state.fistName} ${this.state.lastName}`);
-
-    console.log(this.state);
-   }
+    addNewJod = (jod) => {
+      this.setState({
+          arrJobs: [...this.state.arrJobs, jod]
+      })
+    }
+    
+    deleteJod = (jod) => {
+      let currentJod = this.state.arrJobs
+      currentJod.filter(item => item.id !== jod.id)
+      this.setState({
+        arrJobs: currentJod
+      })
+    }
 
     render() {
-        console.log('>>>>call render', this.state);
-        console.log('>>>>check props', this.props);
-       return(
+      console.log('>>>>call render', this.state);
+      console.log('>>>>check props', this.props);
+      return(
         <>
-         <form>
-            <label htmlFor="fname">First name:</label><br/>
-            <input type="text" onChange={(event) => this.handleFistName(event)} value={this.state.fistName}/><br/>
-            <label htmlFor="fname">First name:</label><br/>
-            <input type="text" onChange={(event) => this.handleLastName(event)} value={this.state.lastName}/><br/>
-            <input onClick={(event)=> this.handleSubmit(event)} type="submit"/>
-        </form> 
-        <ChildComponent arrJobs={this.state.arrJobs} handleClickProps={this.handleClickProps}/>
+          <AddComponent addNewJod={this.addNewJod}/>
+          <ChildComponent arrJobs={this.state.arrJobs}  deleteJod={this.deleteJod}/>
         </>
-       ) 
+      ) 
     }
 }
 
