@@ -20,11 +20,17 @@ class AddComponent extends React.Component {
       alert("Xin vui lòng nhập")
       return
     }
-    this.props.addNewJod({
-      id: Math.floor(Math.random() * 100),
-      title: this.state.title,
-      salary: this.state.salary
-    });
+    if(this.state.salary < 0) {
+      alert("Xin vui nhập sô lớn hơn 0")
+    }else if (this.state.salary > 1000) {
+      alert("Xin vui nhập sô nhỏ hơn 1000")
+    } else {
+      this.props.addNewJod({
+        id: Math.floor(Math.random() * 100),
+        title: this.state.title,
+        salary: this.state.salary
+      });
+    }
 }
 render() {
   return(
@@ -32,7 +38,7 @@ render() {
       <label htmlFor="fname">Job title:</label><br/>
       <input type="text" onChange={(event) => this.handleJod(event)} value={this.state.title}/><br/>
       <label htmlFor="fname">Salary:</label><br/>
-      <input type="text" onChange={(event) => this.handleSalary(event)} className="mt-5" value={this.state.salary}/><br/>
+      <input type="number" onChange={(event) => this.handleSalary(event)} className="mt-5" value={this.state.salary}/><br/>
       <input className='mt-30' onClick={(event)=> this.handleSubmit(event)} type="submit"/>
     </form> 
   )

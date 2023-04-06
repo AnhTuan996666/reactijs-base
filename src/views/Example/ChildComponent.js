@@ -16,28 +16,25 @@ class ChildComponent extends React.Component {
         let { isShown  } = this.state;
         
         const  handlerShow = (event) =>{
-            console.log('.......', event)
+            event.preventDefault();
             this.setState({ isShown: !this.state.isShown });
         } 
         return (
-            <>
-                {!isShown && 
-                    <div className="job-lists">
-                        {arrJobs.map((item, index) => {
-                            if (item.salary < 1000) {
-                                return (
-                                    <div key={index}>
-                                        <p className="mt-5">{item.title} - {item.salary}$ <span onClick={() => this.handleDelete(item)}>x</span></p>
-                                    </div>
-                                )
-                            }
-                            })
-                        }
-                </div>
+          <>
+            {!isShown && 
+              <div className="job-lists">
+                {arrJobs.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <p className="mt-5">{item.title} - {item.salary}$ <span onClick={() => this.handleDelete(index)}>x</span></p>
+                      </div>
+                    )
+                  })
                 }
-                
-                <button className="btn btn-" onClick={(event) => handlerShow(event)}>{!isShown ? 'Ẩn' : 'Hiện'}</button>
-            </>
+              </div>
+            }
+              <button className="btn btn-" onClick={(event) => handlerShow(event)}>{!isShown ? 'Ẩn' : 'Hiện'}</button>
+          </>
         )
     }
 }

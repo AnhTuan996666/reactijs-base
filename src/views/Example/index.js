@@ -5,9 +5,9 @@ import AddComponent from './AddComponent'
 class Mycomponent extends React.Component {
   state = {
     arrJobs: [
-      { id: 'abcJob1', title: 'Developers', salary: '300' },
-      { id: 'abcJob2', title: 'Testers', salary: '400' },
-      { id: 'abcJob3', title: 'Project managers', salary: '200' }
+      { id: 'abcJob1', title: 'Developers', salary: '300'},
+      { id: 'abcJob2', title: 'Testers', salary: '400'},
+      { id: 'abcJob3', title: 'Project managers', salary: '200'}
     ]
   }
 
@@ -16,13 +16,20 @@ class Mycomponent extends React.Component {
           arrJobs: [...this.state.arrJobs, jod]
       })
     }
-    
+
     deleteJod = (jod) => {
-      let currentJod = this.state.arrJobs
-      currentJod.filter(item => item.id !== jod.id)
+      this.state.arrJobs.splice(jod, 1)
       this.setState({
-        arrJobs: currentJod
+        arrJobs: [...this.state.arrJobs]
       })
+    }
+    
+    componentDidUpdate(prevProps, prevState) {
+      console.log("run DidUpdate", "prev state", prevState, "Curent sate", this.state);
+    }
+
+    componentDidMount() {
+      console.log('Run componentDidMount')
     }
 
     render() {
