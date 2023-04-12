@@ -23,7 +23,7 @@ class Mycomponent extends React.Component {
         arrJobs: [...this.state.arrJobs]
       })
     }
-    
+
     componentDidUpdate(prevProps, prevState) {
       console.log("run DidUpdate", "prev state", prevState, "Curent sate", this.state);
     }

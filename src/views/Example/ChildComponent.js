@@ -6,18 +6,16 @@ class ChildComponent extends React.Component {
     }
 
     handleDelete = (item) => {
-        console.log(item)
-        this.props.deleteJod(item)
+      this.props.deleteJod(item)
     }
 
     render() {
-        console.log('>>> check props: ', this.props)
         let { arrJobs  } = this.props;
         let { isShown  } = this.state;
-        
+
         const  handlerShow = (event) =>{
-            event.preventDefault();
-            this.setState({ isShown: !this.state.isShown });
+          event.preventDefault();
+          this.setState({ isShown: !this.state.isShown});
         } 
         return (
           <>

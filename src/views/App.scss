@@ -45,3 +45,23 @@
 .mt-3 {
   margin-bottom: 30PX;
 }
+
+.add-todo {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  margin-bottom: 20px;
+}
+.w-10 {
+  width: 10%;
+}
+.conten-list {
+  margin: 10px 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  button {
+    margin: 0 0 0 5px;
+  }
+}
