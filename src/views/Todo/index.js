@@ -9,6 +9,11 @@ class ListComponent extends React.Component {
       {id:"todo2",title:"Đặng thọ bình"},
       {id:"todo3",title:"Ngô Ngọc Bách"},
     ],
+    editTodo: {},
+  }
+
+  handEditTodo = (todo) => {
+    this.setState({editTodo: todo})
   }
 
   addListToDo = (list) => {
@@ -19,11 +24,13 @@ class ListComponent extends React.Component {
     this.state.listTodo.splice(list, 1)
     this.setState({listTodo: [...this.state.listTodo]})
   }
+
+  
 render() {
   return (
     <>
       <AddTodoComponent AddList={this.addListToDo}/>
-      <ListTodoComponent listTodo={this.state.listTodo} delete={this.deleteList}/>
+      <ListTodoComponent listTodo={this.state.listTodo} update={this.handEditTodo} editTodo={this.state.editTodo} delete={this.deleteList}/>
     </>
   )
 }
