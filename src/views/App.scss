@@ -51,17 +51,44 @@
   align-items: center;
   justify-content:space-between;
   margin-bottom: 20px;
+  max-width: 500px;
+  width: 100%;
+  input {
+    flex: 0 0 auto;
+    width: 75%;
+    height: 24px;
+  }
+  button {
+    flex: 0 0 auto;
+    width: 24%;
+    height: 30px;
+    cursor: pointer;
+  }
 }
 .w-10 {
   width: 10%;
 }
 .conten-list {
+  max-width: 500px;
+  width: 100%;
   margin: 10px 0;
   border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
+  text-align: left;
   button {
     margin: 0 0 0 5px;
   }
 }
+
+.w-75 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+.w-25 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+

@@ -8,6 +8,11 @@ class ListComponent extends React.Component {
       {id:"todo2",title:"Đặng thọ bình"},
       {id:"todo3",title:"Ngô Ngọc Bách"},
     ],
+    editTodo: {},
+  }
+
+  handEditTodo = (todo) => {
+    this.setState({editTodo: todo})
   }
 
   handleChange = (event) => {
@@ -39,6 +44,8 @@ class ListComponent extends React.Component {
     this.setState({listTodo: [...this.state.listTodo]})
     toast.success('Xóa thành công');
   }
+
+  
 render() {
   let {listTodo} = this.state
   return (
