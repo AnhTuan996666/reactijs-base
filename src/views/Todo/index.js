@@ -1,6 +1,5 @@
 import React from 'react';
-import ListTodoComponent from './ListComponent';
-import AddTodoComponent from './AddComponent';
+import { toast } from 'react-toastify';
 
 class ListComponent extends React.Component {
   state = {
@@ -11,19 +10,58 @@ class ListComponent extends React.Component {
     ],
   }
 
+  handleChange = (event) => {
+    this.setState({title:event.target.value})
+  }
+
+
   addListToDo = (list) => {
     this.setState({listTodo: [...this.state.listTodo, list]})
   }
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if(!this.state.title) {
+      toast.error("Thêm thất bại")
+    }else {
+      this.addListToDo({
+        id: Math.floor(Math.random() * 100),
+        title: this.state.title
+      })
+      toast.success("Thêm thành công")
+    }
+    
+  }
+  
 
   deleteList = (list) => {
     this.state.listTodo.splice(list, 1)
     this.setState({listTodo: [...this.state.listTodo]})
+    toast.success('Xóa thành công');
   }
 render() {
+  let {listTodo} = this.state
   return (
     <>
-      <AddTodoComponent AddList={this.addListToDo}/>
-      <ListTodoComponent listTodo={this.state.listTodo} delete={this.deleteList}/>
+      <div className="add-todo">
+          <input type="text" className="" onChange={(event) => this.handleChange(event)} value={this.state.title}/>
+          <button type="button" onClick={(event) => this.handleSubmit(event)}>Add</button>
+        </div>
+
+        <div>
+          {listTodo.map((item, index) => {
+              return (
+                <div key={index} className="conten-list"> 
+                <span className='mt-5'>{index + 1} - {item.title}</span>
+                <div className=''>
+                  <button className='mt-5'>Edit</button>
+                  <button className='mt-5' onClick={() => this.deleteList(index)}>Delete</button>
+                </div>
+              </div>
+              )
+            })
+          }
+      </div>
     </>
   )
 }
