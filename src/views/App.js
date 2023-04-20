@@ -1,16 +1,17 @@
-import logo from './logo.svg';
+
 import './App.scss';
 import ListComponent from './Todo';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Home from './Example/Home';
+import NoPage from './Nopage';
+import Mycomponent from './Example';
+import Layout from './Layout';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      <ListComponent/>    
-      </header>
+      <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -23,7 +24,17 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />} exact="true">
+            <Route index element={<Home />} />
+            <Route path="blogs" element={<ListComponent />} />
+            <Route path="contact" element={<Mycomponent />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 
