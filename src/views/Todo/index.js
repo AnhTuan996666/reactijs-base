@@ -61,7 +61,6 @@ class ListComponent extends React.Component {
 
   deleteList = (list) => {
     this.state.listTodo.splice(list, 1)
-    console.log("list", list, 'to do', this.state.listTodo)
     this.setState({listTodo: [...this.state.listTodo]})
     toast.error('Xóa thành công');
   }

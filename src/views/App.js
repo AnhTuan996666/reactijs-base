@@ -7,6 +7,7 @@ import Home from './Example/Home';
 import NoPage from './Nopage';
 import Mycomponent from './Example';
 import Layout from './Layout';
+import ListUser from './Nav/Users/ListUser';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="blogs" element={<ListComponent />} />
             <Route path="contact" element={<Mycomponent />} />
+            <Route path="/user" element={<ListUser />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
